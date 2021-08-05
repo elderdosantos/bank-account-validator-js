@@ -35,11 +35,10 @@ describe("BradescoValidator", function() {
       expect(validBankAccountParams.valid).toHaveBeenCalled();
     });
 
-    it("does NOT accept agency check empty", function() {
+    it("accept agency check empty", function() {
       validBankAccountParams.agencyCheckNumber = "";
       Moip.BankAccount.validate(validBankAccountParams);
-      var expectedParams = {errors: [{ description: 'O dígito da agência deve conter 1 dígito', code: 'INVALID_AGENCY_CHECK_NUMBER' }] };
-      expect(validBankAccountParams.invalid).toHaveBeenCalledWith(expectedParams);
+      expect(validBankAccountParams.valid).toHaveBeenCalled();
     });
 
     it("does NOT accept agency check greater than one digits", function() {

@@ -14,6 +14,10 @@
     },
 
     agencyCheckNumberIsValid: function(agencyCheckNumber) {
+      if (agencyCheckNumber === undefined || agencyCheckNumber === "") {
+        return true;
+      }
+
       return agencyCheckNumber.length == this.agencyCheckNumberLength() && 
         Moip.CommonBankAccountValidator.agencyCheckNumberIsValid(agencyCheckNumber);
     },
@@ -28,6 +32,10 @@
     },
 
     agencyCheckNumberMatch: function(bankAccount) {
+      if (bankAccount.agencyCheckNumber === undefined || bankAccount.agencyCheckNumber === "") {
+        return true;
+      }
+
       var checkNumberCalculated = Moip.BradescoCheckNumberCalculator.calculateAgency(bankAccount.agencyNumber);
       var checkNumberInformed = bankAccount.agencyCheckNumber.toUpperCase();
       if (checkNumberInformed === "0") {
